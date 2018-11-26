@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Correct Horse Battery Staple-Style Password Generator</title>
+</head>
+
+<body data-spy="scroll" data-target="nav" data-offset="72">
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">Correct Horse Battery Staple</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="nav-anchors">
+      <ul class="nav navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#generator">Password Generator</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#idea">Idea</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container" id="generator">
+  <div class="jumbotron py-4">
+    <p class="lead">This is a truly secure password generator that generates easy-to-remember passwords.</p>
+    <hr class="my-4">
+    <form>
+      <div class="input-group mb-3">
+        <input id="generated-password" class="form-control" type="text"
+               placeholder="Click the Generate button to generate a new password">
+        <div class="input-group-append">
+          <button class="btn btn-success copy" type="button" id="copy-password"
+                  data-clipboard-target="#generated-password">
+            ${require('octicons').clippy.toSVG({ height: 20 })}
+          </button>
+        </div>
+      </div>
+
+      <div class="progress my-3" id="password-bits">
+        <div class="progress-bar" role="progressbar" style="width: 44%"
+             aria-valuenow="44" aria-valuemin="0" aria-valuemax="100">44 bits
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="word-list" class="col-sm-2 col-form-label">Word List</label>
+        <div class="col-sm-10">
+          <select id="word-list" class="form-control custom-select">
+            <option value="small">2048 words (11 bits/word)</option>
+            <option value="medium">4096 words (12 bits/word)</option>
+            <option value="large">8192 words (13 bits/word)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="word-count" class="col-sm-2 col-form-label">Word Count</label>
+        <div class="col-sm-10">
+          <input id="word-count" class="form-control" type="number" value="4">
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <div class="pt-0 col-sm-2 col-form-label">Options</div>
+        <div class="col-sm-10">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="use-capitalize">
+            <label for="use-capitalize">Capitalize the first letter</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="use-symbol">
+            <label for="use-symbol">Add a symbol</label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="use-digit">
+            <label for="use-digit">Add a digit</label>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <button class="btn btn-lg btn-primary" id="run-generator">Generate</button>
+        <button class="btn btn-lg btn-success" id="save-settings">Save Settings</button>
+        <button class="btn btn-lg btn-danger" id="clear-settings">Clear Settings</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="container" id="idea">
+  <h3 class="mb-3">The Idea</h3>
+  <p class="lead">We tend to associate secure passwords with complicated and hard-to-remember passwords. But it
+    doesn't have to be this way.</p>
+  <p>We make password difficult to guess by increasing <em>entropy</em> &mdash; the degree of uncertainty in the
+    password. The higher the entropy, the harder it is to guess the password.</p>
+  <p>One way of increasing entropy is to make passwords more complicated. Another way is to make the password
+    longer, but keeping it simple, as the following xkcd comic shows:</p>
+  <a class="d-block" href="https://xkcd.com/936/"
+     title="To anyone who understands information theory and security and is in an infuriating argument with someone who does not (possibly involving mixed case), I sincerely apologize.">
+    <figure class="figure border rounded p-4 bg-light">
+      <img class="figure-img img-fluid d-block mx-auto" src="https://imgs.xkcd.com/comics/password_strength.png"
+           alt="xkcd comic about password strength">
+      <figcaption class="figure-caption">To anyone who understands information theory and security and is in an
+        infuriating argument with someone who does not (possibly involving mixed case), I sincerely apologize.
+      </figcaption>
+    </figure>
+  </a>
+  <p>While using a single dictionary as a password is horribly insecure and can be guessed in seconds, guessing multiple
+    words gets exponentially harder. Using five words should be able to stop any attempts you can be expect, while eight
+    words can probably deter even the most determined attackers for the next ten years or so.</p>
+</div>
+
+</body>
+</html>

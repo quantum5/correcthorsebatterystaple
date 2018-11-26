@@ -1,0 +1,34 @@
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
+
+@import "~bootstrap/scss/reboot";
+@import "~bootstrap/scss/type";
+@import "~bootstrap/scss/grid";
+@import "~bootstrap/scss/images";
+@import "~bootstrap/scss/buttons";
+@import "~bootstrap/scss/forms";
+@import "~bootstrap/scss/custom-forms";
+@import "~bootstrap/scss/input-group";
+@import "~bootstrap/scss/jumbotron";
+@import "~bootstrap/scss/nav";
+@import "~bootstrap/scss/navbar";
+@import "~bootstrap/scss/progress";
+@import "~bootstrap/scss/tooltip";
+@import "~bootstrap/scss/utilities/background";
+@import "~bootstrap/scss/utilities/borders";
+@import "~bootstrap/scss/utilities/display";
+@import "~bootstrap/scss/utilities/position";
+@import "~bootstrap/scss/utilities/spacing";
+@import "~bootstrap/scss/utilities/text";
+
+@import "~octicons/index";
+
+body {
+  padding-top: 4.5rem;
+  position: relative;
+}
+
+#password-bits {
+  height: 1.5rem;
+}
