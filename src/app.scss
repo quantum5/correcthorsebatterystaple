@@ -38,3 +38,9 @@ body {
     color: $body-color;
   }
 }
+
+@media (max-width: 360px) {
+  .staple {
+    display: none;
+  }
+}
