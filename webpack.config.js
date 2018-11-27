@@ -1,10 +1,23 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+const TerserPlugin = require('terser-webpack-plugin')
 
 const mode = process.env.NODE_ENV || 'development'
 
 module.exports = {
+  optimization: {
+    minimizer: [
+      new TerserPlugin({
+        cache: true,
+        extractComments: true,
+        parallel: true,
+        sourceMap: true
+      }),
+      new OptimizeCSSAssetsPlugin({})
+    ]
+  },
   entry: [
     'core-js/fn/array/from',
     'core-js/fn/array/includes',
@@ -17,7 +30,15 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'src/index.html'
+      template: 'src/index.html',
+      minify: mode === 'production' ? {
+        collapseWhitespace: true,
+        removeComments: true,
+        removeRedundantAttributes: true,
+        removeScriptTypeAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        useShortDoctype: true
+      } : false
     }),
     new MiniCssExtractPlugin({
       filename: '[name].[contenthash].css'
