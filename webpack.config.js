@@ -1,5 +1,8 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+
+const mode = process.env.NODE_ENV || 'development'
 
 module.exports = {
   entry: [
@@ -7,7 +10,7 @@ module.exports = {
     'core-js/fn/array/includes',
     './src/app.js'
   ],
-  mode: process.env.NODE_ENV || 'development',
+  mode: mode,
   output: {
     filename: '[name].[contenthash].js',
     path: path.resolve(__dirname, 'dist')
@@ -15,6 +18,9 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: 'src/index.html'
+    }),
+    new MiniCssExtractPlugin({
+      filename: '[name].[contenthash].css'
     })
   ],
   module: {
@@ -30,8 +36,7 @@ module.exports = {
         test: /\.(scss)$/,
         use: [
           {
-            // Adds CSS to the DOM by injecting a `<style>` tag
-            loader: 'style-loader'
+            loader: mode == 'production' ? MiniCssExtractPlugin.loader : 'style-loader'
           },
           {
             // Interprets `@import` and `url()` like `import/require()` and will resolve them
