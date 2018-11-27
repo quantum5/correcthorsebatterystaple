@@ -7,13 +7,6 @@ $(() => {
   const $options = $('#options-form')
   const $output = $('#generated-password')
   const $bits = $('#password-bits').find('div')
-
-  $('#run-generator').click(() => {
-    const options = $options.serializeObject()
-    $output.val(generate(options))
-    return false
-  })
-
   const classes = 'bg-danger bg-warning bg-info bg-success'
 
   function bitClass (bits) {
@@ -42,9 +35,21 @@ $(() => {
       .addClass(bitClass(bits))
       .text(`${bitRound(bits)} bits`)
       .css('width', `${bits / maxBits * 100}%`)
+      .attr('aria-valuenow', bits)
+      .attr('aria-valuemax', maxBits)
   }
 
-  $options.find('select, input').change(updateBitMeter)
-  $options.find('input[type=nubmer]').on('input', updateBitMeter)
-  updateBitMeter()
+  if (window.crypto && window.crypto.getRandomValues) {
+    $('#too-old').hide()
+
+    $('#run-generator').click(() => {
+      const options = $options.serializeObject()
+      $output.val(generate(options))
+      return false
+    })
+
+    $options.find('select, input').change(updateBitMeter)
+    $options.find('input[type=nubmer]').on('input', updateBitMeter)
+    updateBitMeter()
+  }
 })

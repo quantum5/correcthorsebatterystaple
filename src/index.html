@@ -30,6 +30,10 @@
 
 <div class="container" id="generator">
   <div class="jumbotron py-4">
+    <div class="alert alert-danger" id="too-old">
+      ${require('octicons').alert.toSVG({ height: 24 })}
+      Your browser is too old: it does not support the necessary APIs for this web application.
+    </div>
     <p class="lead">This is a truly secure password generator that generates easy-to-remember passwords.</p>
     <hr class="my-4">
     <div class="input-group mb-3">
@@ -44,9 +48,7 @@
     </div>
 
     <div class="progress my-3" id="password-bits">
-      <div class="progress-bar" role="progressbar" style="width: 44%"
-           aria-valuenow="44" aria-valuemin="0" aria-valuemax="100">44 bits
-      </div>
+      <div class="progress-bar" role="progressbar" aria-valuemin="0"></div>
     </div>
 
     <form id="options-form">
