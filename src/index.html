@@ -32,31 +32,31 @@
   <div class="jumbotron py-4">
     <p class="lead">This is a truly secure password generator that generates easy-to-remember passwords.</p>
     <hr class="my-4">
-    <form>
-      <div class="input-group mb-3">
-        <input id="generated-password" class="form-control" type="text"
-               placeholder="Click the Generate button to generate a new password">
-        <div class="input-group-append">
-          <button class="btn btn-success copy" type="button" id="copy-password"
-                  data-clipboard-target="#generated-password">
-            ${require('octicons').clippy.toSVG({ height: 20 })}
-          </button>
-        </div>
+    <div class="input-group mb-3">
+      <input id="generated-password" class="form-control form-control-lg text-monospace" type="text"
+             placeholder="Click the Generate button to generate a new password">
+      <div class="input-group-append">
+        <button class="btn btn-success copy" type="button" id="copy-password"
+                data-clipboard-target="#generated-password">
+          ${require('octicons').clippy.toSVG({ height: 20 })}
+        </button>
       </div>
+    </div>
 
-      <div class="progress my-3" id="password-bits">
-        <div class="progress-bar" role="progressbar" style="width: 44%"
-             aria-valuenow="44" aria-valuemin="0" aria-valuemax="100">44 bits
-        </div>
+    <div class="progress my-3" id="password-bits">
+      <div class="progress-bar" role="progressbar" style="width: 44%"
+           aria-valuenow="44" aria-valuemin="0" aria-valuemax="100">44 bits
       </div>
+    </div>
 
+    <form id="options-form">
       <div class="form-group row">
         <label for="word-list" class="col-sm-2 col-form-label">Word List</label>
         <div class="col-sm-10">
-          <select id="word-list" class="form-control custom-select">
+          <select id="word-list" class="form-control custom-select" name="list">
             <option value="small">2048 words (11 bits/word)</option>
-            <option value="medium">4096 words (12 bits/word)</option>
-            <option value="large">8192 words (13 bits/word)</option>
+            <option value="medium" disabled>4096 words (12 bits/word)</option>
+            <option value="large" disabled>8192 words (13 bits/word)</option>
           </select>
         </div>
       </div>
@@ -64,7 +64,7 @@
       <div class="form-group row">
         <label for="word-count" class="col-sm-2 col-form-label">Word Count</label>
         <div class="col-sm-10">
-          <input id="word-count" class="form-control" type="number" value="4">
+          <input id="word-count" class="form-control" type="number" name="count" value="5" min="1">
         </div>
       </div>
 
@@ -72,15 +72,15 @@
         <div class="pt-0 col-sm-2 col-form-label">Options</div>
         <div class="col-sm-10">
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="use-capitalize">
+            <input class="form-check-input" type="checkbox" id="use-capitalize" name="capitalize">
             <label for="use-capitalize">Capitalize the first letter</label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="use-symbol">
+            <input class="form-check-input" type="checkbox" id="use-symbol" name="symbol">
             <label for="use-symbol">Add a symbol</label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="use-digit">
+            <input class="form-check-input" type="checkbox" id="use-digit" name="digit">
             <label for="use-digit">Add a digit</label>
           </div>
         </div>

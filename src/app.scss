@@ -31,4 +31,8 @@ body {
 
 #password-bits {
   height: 1.5rem;
+
+  .bg-warning {
+    color: $body-color;
+  }
 }
