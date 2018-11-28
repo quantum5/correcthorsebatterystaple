@@ -1,20 +1,19 @@
-import words from './words'
-
+const words = require('./words')
 const digits = '0123456789'
 const symbols = '`~!@#$%^&*()_+-=,./<>?;:|'
 
-export function getWordList (name) {
+function getWordList (name) {
   if (['small'].includes(name)) {
     return words[name]
   }
   throw new Error(`Invalid word list: ${name}`)
 }
 
-export function getWords (list, indices) {
+function getWords (list, indices) {
   return Array.from(indices).map(index => list[index % list.length])
 }
 
-export function capitalize (string) {
+function capitalize (string) {
   return string[0].toUpperCase() + string.slice(1)
 }
 
@@ -30,7 +29,7 @@ function pickChar (options) {
   return options[array[0] % options.length]
 }
 
-export function generate (options) {
+function generate (options) {
   let words = pickWords(getWordList(options.list), options.count)
 
   if (options.capitalize) {
@@ -48,11 +47,11 @@ export function generate (options) {
   return words.join('')
 }
 
-export function lengthBits (list) {
+function lengthBits (list) {
   return Math.log2(list.length)
 }
 
-export function computeBits (options) {
+function computeBits (options) {
   const wordBits = lengthBits(getWordList(options.list))
   const capsBits = options.capitalize ? 1 : 0
   const symbolBits = options.symbol ? lengthBits(symbols) : 0
