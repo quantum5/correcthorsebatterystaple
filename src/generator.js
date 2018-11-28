@@ -3,7 +3,7 @@ const digits = '0123456789'
 const symbols = '`~!@#$%^&*()_+-=,./<>?;:|'
 
 function getWordList (name) {
-  if (['small'].includes(name)) {
+  if (['small', 'medium'].includes(name)) {
     return words[name]
   }
   throw new Error(`Invalid word list: ${name}`)
@@ -58,4 +58,8 @@ function computeBits (options) {
   const digitBits = options.digit ? lengthBits(digits) : 0
 
   return wordBits * options.count + capsBits + symbolBits + digitBits
+}
+
+module.exports = {
+  getWordList, getWords, capitalize, generate, lengthBits, computeBits
 }

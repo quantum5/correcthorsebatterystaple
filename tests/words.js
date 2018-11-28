@@ -2,10 +2,11 @@ const assert = require('assert').strict
 const words = require('../src/words')
 
 describe('Word List Tests', () => {
-  const lists = ['small']
+  const lists = ['small', 'medium']
 
   it('length', () => {
     assert.equal(words.small.length, 2048, 'small list size incorrect')
+    assert.equal(words.medium.length, 4096, 'medium list size incorrect')
   })
 
   lists.forEach(name => {
