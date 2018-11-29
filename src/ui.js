@@ -8,6 +8,10 @@ $(() => {
   const $output = $('#generated-password')
   const $bits = $('#password-bits').find('div')
   const classes = 'bg-danger bg-warning bg-info bg-success'
+  const defaults = {
+    list: 'small',
+    count: 4,
+  }
 
   function bitClass (bits) {
     if (bits < 44) {
@@ -39,6 +43,15 @@ $(() => {
       .attr('aria-valuemax', maxBits)
   }
 
+  function loadSettings (settings) {
+    $('#word-list').val(settings.list || 'small')
+    $('#word-count').val(settings.count || 4)
+    $options.find(':checkbox').each(function () {
+      $(this).prop('checked', !!settings[this.name])
+    })
+    updateBitMeter()
+  }
+
   if (window.crypto && window.crypto.getRandomValues) {
     $('#too-old').hide()
 
@@ -48,8 +61,29 @@ $(() => {
       return false
     })
 
+    $('#save-settings').click(() => {
+      const options = $options.serializeObject()
+      window.localStorage.setItem('settings', JSON.stringify(options))
+      return false
+    })
+
+    $('#clear-settings').click(() => {
+      window.localStorage.removeItem('settings')
+      loadSettings(defaults)
+      return false
+    })
+
     $options.find('select, input').change(updateBitMeter)
     $options.find('input[type=nubmer]').on('input', updateBitMeter)
     updateBitMeter()
+  }
+
+  const settings = window.localStorage.getItem('settings')
+  if (settings) {
+    try {
+      loadSettings(JSON.parse(settings))
+    } catch (e) {
+      console.log(e)
+    }
   }
 })

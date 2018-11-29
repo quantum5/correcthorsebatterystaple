@@ -31,6 +31,10 @@ body {
   position: relative;
 }
 
+#generated-password {
+  background: $input-bg;
+}
+
 #password-bits {
   height: 1.5rem;
 

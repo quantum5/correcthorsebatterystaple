@@ -38,7 +38,7 @@
     <hr class="my-4">
     <div class="input-group mb-3">
       <input id="generated-password" class="form-control form-control-lg text-monospace" type="text"
-             placeholder="Click the Generate button to generate a new password">
+             placeholder="Click the Generate button to generate a new password" autocomplete="off" readonly>
       <div class="input-group-append">
         <button class="btn btn-success copy" type="button" id="copy-password"
                 data-clipboard-target="#generated-password">
@@ -137,6 +137,10 @@
     doing nothing but attacking you (unless you possess state secrets or something), so this is more than sufficient for
     your password. In the highly unlikely case that your password need more security than this offers, or perhaps you
     are just paranoid, adding an extra word would make the attack time thousandfold.</p>
+
+  <p class="lead">In practice, most real life systems use secure password hashing algorithms, captchas, and other
+    mechanisms to stop password cracking. It is unlikely that your attacker can reach anywhere close to a million
+    guesses a second, and so a 4 word password is probably sufficient for most non-critical accounts.</p>
 </div>
 
 </body>
