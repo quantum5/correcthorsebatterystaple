@@ -3,7 +3,7 @@ const digits = '0123456789'
 const symbols = '`~!@#$%^&*()_+-=,./<>?;:|'
 
 function getWordList (name) {
-  if (['small', 'medium'].includes(name)) {
+  if (['small', 'medium', 'large'].includes(name)) {
     return words[name]
   }
   throw new Error(`Invalid word list: ${name}`)
