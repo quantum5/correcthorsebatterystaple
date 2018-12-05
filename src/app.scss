@@ -30,8 +30,13 @@ $blockquote-font-size: $font-size-base;
 @import "~octicons/index";
 
 body {
-  padding-top: 4.5rem;
+  padding-top: $spacer * 4.5;
   position: relative;
+}
+
+.footer {
+  min-height: $spacer * 4;
+  padding: ($spacer * 4 - $font-size-base) / 2;
 }
 
 #generated-password {
