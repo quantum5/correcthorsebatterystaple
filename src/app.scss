@@ -2,12 +2,15 @@
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins";
 
+$blockquote-font-size: $font-size-base;
+
 @import "~bootstrap/scss/reboot";
 @import "~bootstrap/scss/type";
 @import "~bootstrap/scss/grid";
 @import "~bootstrap/scss/images";
 @import "~bootstrap/scss/alert";
 @import "~bootstrap/scss/buttons";
+@import "~bootstrap/scss/card";
 @import "~bootstrap/scss/forms";
 @import "~bootstrap/scss/custom-forms";
 @import "~bootstrap/scss/input-group";
@@ -47,4 +50,14 @@ body {
   .staple {
     display: none;
   }
+}
+
+.blockquote {
+  border-left: ($spacer * 0.25) solid $gray-400;
+  padding-left: $spacer;
+  color: $blockquote-small-color;
+}
+
+#faq .card {
+  margin-bottom: $spacer;
 }
