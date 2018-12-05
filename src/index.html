@@ -136,9 +136,9 @@
     <span class="mark">500 billion attempts every second</span>. Even then, this scheme will resist the
     cracking attempt for <em>over a year</em>.</p>
 
-  <p>You don't have to worry about this hypothetical scenario. Running this sort of attack is prohibitively expensive.
-    Unless you possess highly valuable secrets that makes this sort of effort worthwhile, in which case you should be
-    using stuff more complex than a password to protect it. If you have to, you can simply add more words.</p>
+  <p>Running this sort of attack is <em>prohibitively expensive</em>. Unless you possess highly valuable secrets that
+    makes this sort of effort worthwhile (you should use something more secure than passwords in such a case), you don't
+    have to worry about this hypothetical scenario. If you have to, you can simply add more words.</p>
 
   <p class="lead">In practice, most real life systems use secure password hashing algorithms, captchas, and other
     mechanisms to stop password cracking. It is unlikely that your attacker can reach anywhere close to a million
@@ -159,8 +159,8 @@
       <p class="card-text">
         Another major part of the reason is that a lot of the similar websites fail to generate passwords securely: for
         example, they used <code>Math.random()</code>, which is not a cryptographically secure random number generator,
-        and should never be used to passwords. This website aims to avoid such pitfalls, and provide a truly secure
-        experience.
+        and should never be used to generate passwords. This website aims to avoid such pitfalls, and provide a truly
+        secure experience.
       </p>
     </div>
   </div>
@@ -169,11 +169,15 @@
       <h5 class="card-title">Why is this site more secure than alternatives?</h5>
       <ol>
         <li>I have a large list of 8192 words.</li>
+        <li>All passwords are generated on your computer. No one else will see it.</li>
         <li>I use <a href="https://developer.mozilla.org/en-US/docs/Web/API/Crypto/getRandomValues">
           <code>window.crypto.getRandomValues()</code></a> &mdash; the only cryptographically-secure random number
           generator in JavaScript, instead of
           <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/random">
             <code>Math.random()</code></a>, whose use is explicitly discouraged for this purporse.
+        </li>
+        <li>The source code is available on <a href="https://github.com/quantum5/correcthorsebatterystaple">GitHub</a>.
+          You can audit the code all you want, and build your own trusted version locally.
         </li>
       </ol>
     </div>
@@ -206,9 +210,10 @@
         <strong>shamelessly promoting his own password generation scheme</strong>.
       </p>
       <p class="card-text">
-        If you don't believe me, that okay. Lots of other people agree with me. Check out
+        If you don&rsquo;t believe me, that&rsquo;s okay. Check out
         <a href="https://security.stackexchange.com/q/62832/103593">this post on the Information Security Stack
-          Exchange</a>. The top four answers (by a huge margin) agree with me.</p>
+          Exchange</a>. The top four answers (with vast majority of the votes) agree with me, and they provide more
+        details and additional material to support xkcd-style passwords.</p>
     </div>
   </div>
 </div>
