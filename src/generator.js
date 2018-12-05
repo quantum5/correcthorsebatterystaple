@@ -23,10 +23,15 @@ function pickWords (list, number) {
   return getWords(list, array)
 }
 
-function pickChar (options) {
+function getChar (choices, index) {
+  return choices[index % choices.length]
+}
+
+function pickChar (choices) {
   const array = new Uint32Array(1)
   window.crypto.getRandomValues(array)
-  return options[array[0] % options.length]
+  const index = array[0]
+  return getChar(choices, index)
 }
 
 function generate (options) {
@@ -61,5 +66,5 @@ function computeBits (options) {
 }
 
 module.exports = {
-  getWordList, getWords, capitalize, generate, lengthBits, computeBits
+  getWordList, getWords, capitalize, generate, getChar, lengthBits, computeBits
 }
