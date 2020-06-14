@@ -30,7 +30,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'src/index.html',
+      template: 'src/index.ejs',
       minify: mode === 'production' ? {
         collapseWhitespace: true,
         removeComments: true,
@@ -46,13 +46,6 @@ module.exports = {
   ],
   module: {
     rules: [
-      {
-        test: /\.html$/,
-        loader: 'html-loader',
-        options: {
-          interpolate: true
-        }
-      },
       {
         test: /\.(scss)$/,
         use: [

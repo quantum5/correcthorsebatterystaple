@@ -34,7 +34,7 @@
 <div class="container" id="generator">
   <div class="jumbotron py-4">
     <div class="alert alert-danger" id="too-old">
-      ${require('octicons').alert.toSVG({ height: 24 })}
+      <%= require('octicons').alert.toSVG({ height: 24 }) %>
       Your browser is too old: it does not support the necessary APIs for this web application.
     </div>
     <p class="lead">This is a truly secure password generator that generates easy-to-remember passwords.</p>
@@ -45,7 +45,7 @@
       <div class="input-group-append">
         <button class="btn btn-success copy" type="button" id="copy-password"
                 data-clipboard-target="#generated-password">
-          ${require('octicons').clippy.toSVG({ height: 20 })}
+          <%= require('octicons').clippy.toSVG({ height: 20 }) %>
         </button>
       </div>
     </div>
@@ -112,7 +112,7 @@
      title="To anyone who understands information theory and security and is in an infuriating argument with someone who does not (possibly involving mixed case), I sincerely apologize.">
     <figure class="figure border rounded p-4 bg-light">
       <img class="figure-img img-fluid d-block mx-auto p-2 bg-white border border-dark rounded"
-           src="xkcd.png" alt="xkcd comic about password strength">
+           src="<%= require('./xkcd.png') %>" srcset="<%= require('./xkcd.png') %>, <%= require('./xkcd_2x.png') %> 2x" alt="xkcd comic about password strength">
       <figcaption class="figure-caption">To anyone who understands information theory and security and is in an
         infuriating argument with someone who does not (possibly involving mixed case), I sincerely apologize.
       </figcaption>
@@ -220,7 +220,7 @@
 
 <footer class="footer bg-light">
   <div class="container">
-    <span class="text-muted">Copyright &copy; 2018-${new Date().getFullYear()} <a href="https://quantum2.xyz">Quantum</a>. Licensed under
+    <span class="text-muted">Copyright &copy; 2018-<%= new Date().getFullYear() %> <a href="https://quantum2.xyz">Quantum</a>. Licensed under
       <a href="https://www.gnu.org/licenses/agpl-3.0.en.html">GNU AGPLv3</a>. Source code available on
       <a href="https://github.com/quantum5/correcthorsebatterystaple">GitHub</a>.
     </span>
