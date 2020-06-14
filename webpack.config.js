@@ -57,7 +57,7 @@ module.exports = {
         test: /\.(scss)$/,
         use: [
           {
-            loader: mode == 'production' ? MiniCssExtractPlugin.loader : 'style-loader'
+            loader: mode === 'production' ? MiniCssExtractPlugin.loader : 'style-loader'
           },
           {
             // Interprets `@import` and `url()` like `import/require()` and will resolve them
