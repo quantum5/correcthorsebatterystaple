@@ -1,7 +1,7 @@
 import $ from 'jquery/dist/jquery'
 import 'form-serializer/jquery.serialize-object'
 
-import { generate, computeBits } from './generator'
+import { generate, computeBits, defaultSymbol } from './generator'
 
 $(() => {
   const $options = $('#options-form')
@@ -9,8 +9,10 @@ $(() => {
   const $bits = $('#password-bits').find('div')
   const classes = 'bg-danger bg-warning bg-info bg-success'
   const defaults = {
-    list: 'small',
+    list: 'large',
     count: 4,
+    symbol: true,
+    separator: defaultSymbol,
   }
 
   function bitClass (bits) {
@@ -49,6 +51,7 @@ $(() => {
     $options.find(':checkbox').each(function () {
       $(this).prop('checked', !!settings[this.name])
     })
+    $('#separator-symbol').val(settings.separator || defaultSymbol)
     updateBitMeter()
   }
 

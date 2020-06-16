@@ -81,8 +81,14 @@
             <label for="use-capitalize">Capitalize the first letter</label>
           </div>
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="use-symbol" name="symbol">
-            <label for="use-symbol">Add a symbol</label>
+            <input class="form-check-input" type="checkbox" id="use-symbol" name="symbol" checked>
+            <label for="use-symbol">Use separator symbol:</label>
+            <select id="separator-symbol" name="separator">
+              <% [...require('./generator').symbols].forEach(symbol => { %>
+                <option<% if (symbol === require('./generator').defaultSymbol) { %> selected<% }
+                          else if (symbol === ' ') { %> value=" "<% } %>><%= _.escape(symbol) %></option>
+              <% }) %>
+            </select>
           </div>
           <div class="form-check">
             <input class="form-check-input" type="checkbox" id="use-digit" name="digit">

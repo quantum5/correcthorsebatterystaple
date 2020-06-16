@@ -1,6 +1,7 @@
 const words = require('./words')
 const digits = '0123456789'
-const symbols = '`~!@#$%^&*()_+-=,./<>?;:|'
+const symbols = '`~!@#$%^&*()_+-=,./<>?;:|[]{} '
+const defaultSymbol = '-'
 
 function getWordList (name) {
   if (['small', 'medium', 'large'].includes(name)) {
@@ -41,30 +42,31 @@ function generate (options) {
     words = words.map(capitalize)
   }
 
-  if (options.symbol) {
-    words.push(pickChar(symbols))
-  }
-
   if (options.digit) {
     words.push(pickChar(digits))
   }
 
-  return words.join('')
+  return words.join(options.symbol ? options.separator : '')
 }
 
 function lengthBits (list) {
   return Math.log2(list.length)
 }
 
+function bitsForSymbol (symbol) {
+  return symbol === defaultSymbol ? 1 : lengthBits(symbols)
+}
+
 function computeBits (options) {
   const wordBits = lengthBits(getWordList(options.list))
   const capsBits = options.capitalize ? 1 : 0
-  const symbolBits = options.symbol ? lengthBits(symbols) : 0
+  const symbolBits = options.symbol ? bitsForSymbol(options.separator) : 0
   const digitBits = options.digit ? lengthBits(digits) : 0
 
   return wordBits * options.count + capsBits + symbolBits + digitBits
 }
 
 module.exports = {
-  getWordList, getWords, capitalize, generate, getChar, lengthBits, computeBits
+  getWordList, getWords, capitalize, generate, getChar, lengthBits, computeBits,
+  symbols, defaultSymbol,
 }
