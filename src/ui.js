@@ -9,8 +9,10 @@ $(() => {
   const $bits = $('#password-bits').find('div')
   const classes = 'bg-danger bg-warning bg-info bg-success'
   const defaults = {
-    list: 'small',
+    list: 'large',
     count: 4,
+    symbol: true,
+    separator: defaultSymbol,
   }
 
   function bitClass (bits) {
