@@ -40,11 +40,11 @@
     <p class="lead">This is a truly secure password generator that generates easy-to-remember passwords.</p>
     <hr class="my-4">
     <div class="input-group mb-3">
-      <input id="generated-password" class="form-control form-control-lg text-monospace" type="text"
-             placeholder="Click the Generate button to generate a new password" autocomplete="off" readonly>
+      <div id="generated-password" class="form-control form-control-lg text-monospace placeholder">
+        Click the Generate button to generate a new password</div>
       <div class="input-group-append">
         <button class="btn btn-success copy" type="button" id="copy-password"
-                data-clipboard-target="#generated-password">
+                data-clipboard-target="#generated-password" disabled>
           <%= require('octicons').clippy.toSVG({ height: 20 }) %>
         </button>
       </div>
