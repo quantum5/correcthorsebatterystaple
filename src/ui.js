@@ -1,7 +1,7 @@
 import $ from 'jquery/dist/jquery'
 import 'form-serializer/jquery.serialize-object'
 
-import { generate, computeBits } from './generator'
+import { generate, computeBits, defaultSymbol } from './generator'
 
 $(() => {
   const $options = $('#options-form')
@@ -49,6 +49,7 @@ $(() => {
     $options.find(':checkbox').each(function () {
       $(this).prop('checked', !!settings[this.name])
     })
+    $('#separator-symbol').val(settings.separator || defaultSymbol)
     updateBitMeter()
   }
 
