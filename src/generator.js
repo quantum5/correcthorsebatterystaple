@@ -1,6 +1,6 @@
 const words = require('./words')
 const digits = '0123456789'
-const symbols = '`~!@#$%^&*()_+-=,./<>?;:|[]{} '
+const symbols = '-_.,; /`~!@#$%^&*()+=<>?:|[]{}'
 const defaultSymbol = '-'
 
 function getWordList (name) {

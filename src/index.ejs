@@ -85,8 +85,7 @@
             <label for="use-symbol">Use separator symbol:</label>
             <select id="separator-symbol" name="separator">
               <% [...require('./generator').symbols].forEach(symbol => { %>
-                <option<% if (symbol === require('./generator').defaultSymbol) { %> selected<% }
-                          else if (symbol === ' ') { %> value=" "<% } %>><%= _.escape(symbol) %></option>
+                <option<% if (symbol === ' ') { %> value=" "<% } %>><%= _.escape(symbol) %></option>
               <% }) %>
             </select>
           </div>
