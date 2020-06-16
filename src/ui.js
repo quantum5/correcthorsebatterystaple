@@ -60,7 +60,8 @@ $(() => {
 
     $('#run-generator').click(() => {
       const options = $options.serializeObject()
-      $output.val(generate(options))
+      $output.text(generate(options)).removeClass('placeholder')
+      $('#copy-password').prop('disabled', false)
       return false
     })
 

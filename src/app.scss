@@ -66,3 +66,12 @@ body {
 #faq .card {
   margin-bottom: $spacer;
 }
+
+#generated-password {
+  height: auto;
+
+  &.placeholder {
+    color: $input-placeholder-color;
+    user-select: none;
+  }
+}
