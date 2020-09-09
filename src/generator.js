@@ -10,6 +10,7 @@ function getWordList (name) {
   throw new Error(`Invalid word list: ${name}`)
 }
 
+// Only works when the maximum possible value in indices is divisible by list.length.
 function getWords (list, indices) {
   return Array.from(indices).map(index => list[index % list.length])
 }
@@ -18,21 +19,25 @@ function capitalize (string) {
   return string[0].toUpperCase() + string.slice(1)
 }
 
+// Only works on power-of-two sized lists.
 function pickWords (list, number) {
   const array = new Uint16Array(number)
   window.crypto.getRandomValues(array)
   return getWords(list, array)
 }
 
+// Only works when the maximum possible value of index is divisible by choices.length.
 function getChar (choices, index) {
   return choices[index % choices.length]
 }
 
 function pickChar (choices) {
   const array = new Uint32Array(1)
-  window.crypto.getRandomValues(array)
-  const index = array[0]
-  return getChar(choices, index)
+  const maxValid = Math.floor(4294967296 / choices.length) * choices.length;
+  do {
+    window.crypto.getRandomValues(array)
+  } while (array[0] >= maxValid)
+  return getChar(choices, array[0])
 }
 
 function generate (options) {
