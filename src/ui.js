@@ -12,6 +12,7 @@ $(() => {
     list: 'large',
     count: 4,
     symbol: true,
+    copy: false,
     separator: defaultSymbol,
   }
 
@@ -61,6 +62,8 @@ $(() => {
     $('#run-generator').click(() => {
       const options = $options.serializeObject()
       $output.text(generate(options)).removeClass('placeholder')
+      if(options.copy)
+        new Clipboard('#run-generator')
       $('#copy-password').prop('disabled', false)
       return false
     })
