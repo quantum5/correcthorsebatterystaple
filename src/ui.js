@@ -1,5 +1,7 @@
+const Clipboard = require('clipboard/dist/clipboard')
 import $ from 'jquery/dist/jquery'
 import 'form-serializer/jquery.serialize-object'
+import { showTooltip } from './clipboard'
 
 import { generate, computeBits, defaultSymbol } from './generator'
 
@@ -12,6 +14,7 @@ $(() => {
     list: 'large',
     count: 4,
     symbol: true,
+    copy: false,
     separator: defaultSymbol,
   }
 
@@ -61,6 +64,10 @@ $(() => {
     $('#run-generator').click(() => {
       const options = $options.serializeObject()
       $output.text(generate(options)).removeClass('placeholder')
+      if(options.copy) {
+        const checkCopy = Clipboard.copy(document.querySelector("#generated-password"))
+        showTooltip($('#run-generator'), checkCopy ? 'Copied!' : 'Failed to copy!')
+      }
       $('#copy-password').prop('disabled', false)
       return false
     })
