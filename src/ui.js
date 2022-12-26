@@ -63,7 +63,9 @@ $(() => {
       const options = $options.serializeObject()
       $output.text(generate(options)).removeClass('placeholder')
       if(options.copy)
-        new Clipboard('#run-generator')
+        new Clipboard("#run-generator", {})
+            .on('success', e => showTooltip($(e.trigger), 'Copied!'))
+            .on('error', e => showTooltip($(e.trigger), 'Failed to copy!'))
       $('#copy-password').prop('disabled', false)
       return false
     })
