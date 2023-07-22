@@ -1,32 +1,32 @@
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
-const TerserPlugin = require('terser-webpack-plugin')
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
-const mode = process.env.NODE_ENV || 'development'
+const mode = process.env.NODE_ENV || 'development';
 
 module.exports = {
   optimization: {
     minimizer: [
       new TerserPlugin({
-        cache: true,
-        extractComments: true,
         parallel: true,
-        sourceMap: true
+        terserOptions: {
+          sourceMap: true,
+        },
       }),
-      new CssMinimizerPlugin({})
-    ]
+      new CssMinimizerPlugin({}),
+    ],
   },
   entry: [
     'core-js/fn/array/from',
     'core-js/fn/array/includes',
-    './src/app.js'
+    './src/app.js',
   ],
   mode: mode,
   output: {
     filename: '[name].[contenthash].js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'dist'),
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -37,12 +37,12 @@ module.exports = {
         removeRedundantAttributes: true,
         removeScriptTypeAttributes: true,
         removeStyleLinkTypeAttributes: true,
-        useShortDoctype: true
-      } : false
+        useShortDoctype: true,
+      } : false,
     }),
     new MiniCssExtractPlugin({
-      filename: '[name].[contenthash].css'
-    })
+      filename: '[name].[contenthash].css',
+    }),
   ],
   module: {
     rules: [
@@ -50,33 +50,35 @@ module.exports = {
         test: /\.(scss)$/,
         use: [
           {
-            loader: mode === 'production' ? MiniCssExtractPlugin.loader : 'style-loader'
+            loader: mode === 'production' ? MiniCssExtractPlugin.loader : 'style-loader',
           },
           {
             // Interprets `@import` and `url()` like `import/require()` and will resolve them
-            loader: 'css-loader'
+            loader: 'css-loader',
           },
           {
             // Loader for webpack to process CSS with PostCSS
             loader: 'postcss-loader',
             options: {
-              plugins: function () {
-                return [
-                  require('autoprefixer')
-                ]
-              }
-            }
+              postcssOptions: {
+                plugins: function () {
+                  return [
+                    require('autoprefixer'),
+                  ];
+                },
+              },
+            },
           },
           {
             // Loads a SASS/SCSS file and compiles it to CSS
-            loader: 'sass-loader'
-          }
-        ]
+            loader: 'sass-loader',
+          },
+        ],
       },
       {
         test: /\.(png|jp(e*)g|svg)$/,
-        type: 'asset/resource'
-      }
-    ]
-  }
-}
+        type: 'asset/resource',
+      },
+    ],
+  },
+};

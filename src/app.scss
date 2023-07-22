@@ -36,7 +36,7 @@ body {
 
 .footer {
   min-height: $spacer * 4;
-  padding: ($spacer * 4 - $font-size-base) / 2 0;
+  padding: calc(($spacer * 4 - $font-size-base) / 2) 0;
 }
 
 #generated-password {
