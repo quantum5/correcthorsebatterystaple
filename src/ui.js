@@ -78,7 +78,7 @@ $(() => {
     })
 
     $options.find('select, input').change(updateBitMeter)
-    $options.find('input[type=nubmer]').on('input', updateBitMeter)
+    $options.find('input[type=number]').on('input', updateBitMeter)
     updateBitMeter()
   }
 
