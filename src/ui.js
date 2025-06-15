@@ -55,15 +55,17 @@ $(() => {
     updateBitMeter()
   }
 
+  function generatePassword () {
+    const options = $options.serializeObject()
+    $output.text(generate(options)).removeClass('placeholder')
+    $('#copy-password').prop('disabled', false)
+    return false
+  }
+
   if (window.crypto && window.crypto.getRandomValues) {
     $('#too-old').hide()
 
-    $('#run-generator').click(() => {
-      const options = $options.serializeObject()
-      $output.text(generate(options)).removeClass('placeholder')
-      $('#copy-password').prop('disabled', false)
-      return false
-    })
+    $('#run-generator').click(generatePassword)
 
     $('#save-settings').click(() => {
       const options = $options.serializeObject()
@@ -80,6 +82,7 @@ $(() => {
     $options.find('select, input').change(updateBitMeter)
     $options.find('input[type=number]').on('input', updateBitMeter)
     updateBitMeter()
+    generatePassword()
   }
 
   const settings = window.localStorage.getItem('settings')
