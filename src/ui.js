@@ -62,6 +62,15 @@ $(() => {
     return false
   }
 
+  const settings = window.localStorage.getItem('settings')
+  if (settings) {
+    try {
+      loadSettings(JSON.parse(settings))
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
   if (window.crypto && window.crypto.getRandomValues) {
     $('#too-old').hide()
 
@@ -83,14 +92,5 @@ $(() => {
     $options.find('input[type=number]').on('input', updateBitMeter)
     updateBitMeter()
     generatePassword()
-  }
-
-  const settings = window.localStorage.getItem('settings')
-  if (settings) {
-    try {
-      loadSettings(JSON.parse(settings))
-    } catch (e) {
-      console.log(e)
-    }
   }
 })
