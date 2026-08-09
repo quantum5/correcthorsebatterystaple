@@ -16,7 +16,7 @@
     "css-minimizer-webpack-plugin": "^5.0.1",
     "html-webpack-plugin": "^5.5.3",
     "mini-css-extract-plugin": "^2.7.6",
-    "mocha": "^10.2.0",
+    "mocha": "^10.8.2",
     "postcss-loader": "^7.3.3",
     "rimraf": "^5.0.1",
     "sass": "^1.64.1",
